@@ -167,13 +167,14 @@ computed: {
 <style scoped>
     #container{
         display:flex;  
+        justify-content:center;
     }
     #card{
         display:flex;
         flex-direction:column;
     }
     .post{
-        width:45%;
+        width:50%;
         margin: 1em auto;
         background-color: #F2F5F7;
         border-radius:15px;  

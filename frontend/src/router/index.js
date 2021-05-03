@@ -41,13 +41,7 @@ const routes = [
       // don't forget to call next()
     }
   },
-  /*{
-    path: "/Profile",
-    name: "Profile",
-    component:Profile
-  }
-  ,*/
-  {
+   {
     path: "/PostId/:id",
     name: "PostId",
     component: PostId,
