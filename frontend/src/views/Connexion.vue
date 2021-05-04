@@ -31,7 +31,6 @@
 </template>
 
 <script>
-//import axios from "axios";
 import store from '../store/index'
 import configAxios from '../axios/configAxios'
 
@@ -61,21 +60,11 @@ export default {
                 email:email,
                 password:password,
             })
-            /*axios
-            .post("http://localhost:3000/api/users/login",{
-                email:email,
-                password:password,
-            })*/
+
                 .then(result =>{
                     localStorage.setItem("token", result.data.token );                               
-                    //const token = window.localStorage.getItem("token")
-                configAxios.get(`users/me/`)    
-                    /*axios
-                    .get("http://localhost:3000/api/users/me/",{
-                    headers: {
-                        Authorization: "Bearer " + token
-                    } 
-                    })*/
+
+                configAxios.get(`users/me`)    
                         .then(result => {
                             store.dispatch('getUserInfos',result.data )
                             location.replace('/AllPosts') 

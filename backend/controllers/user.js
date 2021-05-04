@@ -105,7 +105,6 @@ signup: function(req, res) {
           where: { email: email }
         })
         .then(function(userFound) {
-          console.log(userFound)
           done(null, userFound);
         })
         .catch(function(err) {
