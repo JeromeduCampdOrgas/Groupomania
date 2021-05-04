@@ -52,13 +52,8 @@ module.exports = {
           })
           .catch((err) => res.status(500).json(err))}
         };
-        
-
     })
-    .catch(err => res.status(500).json({ err : err}));
-
-      
-    
+    .catch(err => res.status(500).json({ err : err})); 
   },
   listMessages: function(req, res) {
     let fields  = req.query.fields;
@@ -80,7 +75,6 @@ module.exports = {
       }]
     }).then(function(messages) {
       if (messages) {
-
         res.status(200).json(messages);
       } else {
         res.status(404).json({ "error": "no messages found" });

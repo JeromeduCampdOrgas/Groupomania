@@ -86,8 +86,7 @@ methods: {
                 }})
                 .then(response => {
                     this.users = response.data;
-                    for(let post of this.posts){
-                              
+                    for(let post of this.posts){         
                         for(let user of this.users){
                             if(user.id == post.userId){
                                 post.createdBy = user.username

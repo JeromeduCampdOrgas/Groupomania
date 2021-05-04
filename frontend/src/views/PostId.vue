@@ -29,6 +29,9 @@
                 <label for="content">Contenu</label> 
                 <textarea name="content" id="content" cols="33" rows="18" v-model="post.content"></textarea>
             </div>
+            <p class="alerte" v-show="isVisible">
+                Vous n'êtes pas autorisé pour cette action
+            </p>
             <input type="text" id = "validationButton" class = "submit-button"  v-on:click="validModif" value="Valider">
         </form>
     </div>
@@ -49,7 +52,8 @@ export default {
             post: [],
             dataPost:{
                 picture:''
-            }
+            },
+            isVisible: false
         }
     },
     methods: {
@@ -60,7 +64,8 @@ export default {
             let idMessage = str.split("/").pop(); 
 
           configAxios.get(`messages/` + idMessage + ``)
-                .then((response) => {this.post = response.data})
+                .then((response) => {
+                    this.post = response.data})
                 .catch(()=> this.post = [{title: "Erreur de chargement"}])
         },
     deletePost(){
@@ -88,16 +93,26 @@ export default {
         onFileChange(event){  
             this.post.attachment = event.target.files[0];  
         },
-        validModif(){    
+        validModif(){   
+            const userId = this.post.userId;
+            const currentUserLoggedInId = this.$store.state.userLoggedIn.id
+            const isAdmin = this.$store.state.userLoggedIn.isAdmin
+            console.log('isAdmin: ' + isAdmin)
+           if(userId != currentUserLoggedInId && !isAdmin ){
+               return this.isVisible = true;
+           }else{
             const formData = new FormData()
+                formData.set("userId",this.post.userId)
                 formData.set("title", this.post.title)
                 formData.set("content", this.post.content)
                 formData.set("picture",this.post.attachment)
 
                 configAxios.put(`messages/` + this.post.id + ``, formData)
-                .then(() => {window.location.replace("/AllPosts")
-                        this.$router.push("/AllPosts")})
+                .then(() => {
+                    window.location.replace("/AllPosts")
+                })
                 .catch(console.log('prout'))
+            }   
         }
     },
     mounted() {
@@ -161,6 +176,10 @@ export default {
     box-shadow: 1px 2px 10px 1px #aaa ;
     border-radius:20px;
     }
+    .alerte{
+    color:red;
+    font-weight:bold;
+}
 
 
 @media screen and (max-width:800px){

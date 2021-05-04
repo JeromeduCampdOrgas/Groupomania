@@ -18,23 +18,20 @@ module.exports = {
     models.Message.findOne({
       where: { id: messageId },
     })
-      .then((messageFound) => {
-        
+      .then((messageFound) => {  
         //si le message est trouvé on cherche le user
         if (messageFound) {
-        
           models.User.findOne({
             where: { id: userId },
           })
-            //si le user est trouvé on cherche dans le user dans la table des likes
+            //si le user est trouvé on cherche le user dans la table des likes
             .then((userFound) => {
               if (userFound) {
                 models.Like.findOne({
                   where: {
                     userId: userFound.id,
                     messageId: messageFound.id,
-                  },
-                  
+                  },       
                 })
                   .then((userAlreadyLike) => {
                     //si on ne trouve pas le user dans la table des likes pour l'id du message
@@ -139,6 +136,4 @@ module.exports = {
       })
       .catch((err) => res.status(500).json({ err: "erreur finale" }));
   }
-  
- 
 };

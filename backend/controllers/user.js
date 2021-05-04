@@ -3,8 +3,6 @@ const bcrypt = require('bcrypt');
 const jwtUtils = require('../utils/jwt.utils');
 const models = require('../models');
 const asyncLib = require('async');
-/*const { sequelize } = require('../models');
-const { json } = require('sequelize/types');*/
 
 // Constants
 
