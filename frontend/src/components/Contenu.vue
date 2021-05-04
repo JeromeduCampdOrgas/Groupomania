@@ -11,7 +11,6 @@
 <script>
 import Modale from './Modale'
 
-
 export default {
     name:'Contenu',
     data(){
@@ -26,6 +25,7 @@ export default {
     },
     methods: {
         toggleModale: function(){
+
             this.revele = !this.revele
         }
 

@@ -16,7 +16,7 @@
             <p class="alerte" v-show="isVisible">L'adresse mail est obligatoire et doit être une adresse valide. <br>
             Le mot de passe est obligatoire et doit comporter entre 4 et 10 caractères.
             </p>
-            <p class="alerte" v-show="idUncorrect && isVisible">Utilisateur inconnu.</p>
+            <p class="alerte" v-show="idUncorrect ">Utilisateur inconnu.</p>
             <div  class = "form-div">
                 <button id = "validationButton" class = "submit-button" v-on:click.prevent="connexion" v-on:keyup.enter="connexion" > 
                     Valider
@@ -63,15 +63,10 @@ export default {
 
                 .then(result =>{
                     localStorage.setItem("token", result.data.token );                               
-
-                configAxios.get(`users/me`)    
-                        .then(result => {
-                            store.dispatch('getUserInfos',result.data )
-                            location.replace('/AllPosts') 
-                        })
-                        .catch(() => console.log('Touche pas ça p\'tit con'))                          
+                    location.replace('/AllPosts') 
+                       
                 })
-                .catch(this.idUncorrect = true);
+                .catch(() => this.idUncorrect = true);
             }
         },
         ajouter(){

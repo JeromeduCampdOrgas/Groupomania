@@ -45,7 +45,7 @@ methods: {
   disconnect(){
     if(localStorage.getItem('token')){
     localStorage.clear()
-    window.location.replace("/")
+   location.replace("/")
     }
   },
   newPost(){

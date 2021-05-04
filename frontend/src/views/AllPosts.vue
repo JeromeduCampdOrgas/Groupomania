@@ -92,19 +92,20 @@ methods: {
                     }
                 })
                 .catch(() => this.users = [{title: "Requête non autorisée"}])
+                configAxios.get(`users/me/`)    
+                        .then(result => {
+                            store.dispatch('getUserInfos',result.data )
+                            
+                        })
+                        .catch(() => console.log('Touche pas ça p\'tit con'))   
             })       
             .catch(()=> this.posts = [{title: "Erreur de chargement"}])
     },
     getPostId(id){ 
             this.$router.push("/PostId/" + id + "")   
-            //store.dispatch('getCurrentId',id )
         },
     like(id){
-        //const token = localStorage.getItem('token')
         configAxios.post(`messages/` + id + `/vote/like`,{})
-        /*axios
-        .post('http://localhost:3000/api/messages/' + id +'/vote/like', {},{
-        headers: {"Authorization": "Bearer " + token}})*/
         .then(() => {
             for(let post of this.posts){ 
                 if(post.id == id){
