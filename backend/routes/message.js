@@ -8,7 +8,6 @@ const multer = require('../middleware/multer-config');
 
 //Messages routes
 router.post('/messages/new/',multer, messageCtrl.createMessage);
-
 router.get('/messages/', messageCtrl.listMessages);
 router.get('/messages/:messageId',messageCtrl.getOnePost);
 router.delete('/messages/:messageId',auth,messageCtrl.deleteOnePost);

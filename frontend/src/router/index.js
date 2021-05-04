@@ -4,7 +4,7 @@ import Home from "../views/Connexion.vue"
 import AllPosts from "../views/AllPosts.vue"
 import NewPost from "../views/NewPost.vue"
 import PostId from "../views/PostId.vue"
-//import Profile from "../views/profileUpdate.vue"
+
 
 const routes = [
  

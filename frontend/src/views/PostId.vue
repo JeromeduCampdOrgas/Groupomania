@@ -97,7 +97,7 @@ export default {
             const userId = this.post.userId;
             const currentUserLoggedInId = this.$store.state.userLoggedIn.id
             const isAdmin = this.$store.state.userLoggedIn.isAdmin
-            console.log('isAdmin: ' + isAdmin)
+
            if(userId != currentUserLoggedInId && !isAdmin ){
                return this.isVisible = true;
            }else{

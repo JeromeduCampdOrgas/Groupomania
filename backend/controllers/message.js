@@ -123,7 +123,6 @@ module.exports = {
         
         if(message.attachment){
           const filename = message.attachment.split('/images/')[1];
-          console.log(filename)
           fs.unlink(`images/${filename}`, () => {
             models.Message.destroy({
               where: { id : messageId}
@@ -139,7 +138,7 @@ module.exports = {
             .catch(res.status(500).json({ error : 'Impossible to delete post'}))
         }
       })
-      //.catch(res.status(500).json({ error : "we've got a problem"}));
+
   },
   updateOnePost: function(req, res) {
     // Getting auth header
@@ -148,12 +147,14 @@ module.exports = {
 
     // Params
     const messageId = parseInt(req.params.messageId);
+    
     let title = req.body.title;
     let content = req.body.content;
 if(req.file){
     const attachmentURL = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     models.Message.update(
-      {title : title,
+      { userId : userId,
+        title : title,
       content : content,
       attachment : attachmentURL},
       {where: { id : messageId}
@@ -163,7 +164,8 @@ if(req.file){
     .catch(err => res.status(500).json({ err : 'impossible de modifier l\'objet'}))
     } else{
       models.Message.update(
-        {title : title,
+        { userId : userId,
+          title : title,
         content : content},
         {where: { id : messageId}
       })

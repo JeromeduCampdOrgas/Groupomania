@@ -28,10 +28,11 @@
 </template>
 
 <script>
-import axios from "axios";
+//import axios from "axios";
 import store from '../store/index'
 import jwtDecode from 'jwt-decode'
 import dataPost from './NewPost.vue'
+import configAxios from '../axios/configAxios'
 
 export default {
 name:'AllPosts',
@@ -52,8 +53,8 @@ methods: {
         const token = localStorage.getItem('token')
         const decoded =jwtDecode(token)
         this.posts.push(dataPost)
-        axios
-        .get("http://localhost:3000/api/messages")
+
+        configAxios.get(`messages`)
             .then(response => {
                 for(let elem of response.data){
                     Object.defineProperties(elem,{
@@ -79,11 +80,7 @@ methods: {
                         }
                     }      
                 }   
-                axios
-                .get('http://localhost:3000/api/users',{
-                headers: {
-                    "Authorization": "Bearer " + token
-                }})
+                configAxios.get(`users`)
                 .then(response => {
                     this.users = response.data;
                     for(let post of this.posts){         
@@ -103,10 +100,11 @@ methods: {
             //store.dispatch('getCurrentId',id )
         },
     like(id){
-        const token = localStorage.getItem('token')
-        axios
+        //const token = localStorage.getItem('token')
+        configAxios.post(`messages/` + id + `/vote/like`,{})
+        /*axios
         .post('http://localhost:3000/api/messages/' + id +'/vote/like', {},{
-        headers: {"Authorization": "Bearer " + token}})
+        headers: {"Authorization": "Bearer " + token}})*/
         .then(() => {
             for(let post of this.posts){ 
                 if(post.id == id){
@@ -118,10 +116,7 @@ methods: {
         .catch(error => console.log(error))
     },
     unlike(id){
-        const token = localStorage.getItem('token')
-        axios
-        .post('http://localhost:3000/api/messages/' + id +'/vote/dislike', {},{
-        headers: {"Authorization": "Bearer " + token}})
+       configAxios.post(`messages/` + id + `/vote/dislike`,{})
         .then(() => {
             for(let post of this.posts){ 
                 if(post.id == id){
@@ -133,10 +128,11 @@ methods: {
         .catch(error => console.log(error))
 },
     deletePost(id){
-        const token = localStorage.getItem('token')
+        /*const token = localStorage.getItem('token')
         axios
         .delete("http://localhost:3000/api/messages/" + id +'',{
-        headers: {"Authorization": "Bearer " + token}})
+        headers: {"Authorization": "Bearer " + token}})*/
+        configAxios.delete(`messages/` + id + ``)
         .then(() => location.replace('/AllPosts'))
         .catch()
     },

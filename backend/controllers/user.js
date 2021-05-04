@@ -20,7 +20,7 @@ signup: function(req, res) {
     let username = req.body.username;
     let password = req.body.password;
     let bio      = req.body.bio;
-console.log(req.body)
+
     //test des paramètres
     if (email == null || username == null || password == null) {
       return res.status(400).json({ 'error': 'missing parameters' });
@@ -197,7 +197,6 @@ console.log(req.body)
             email: (email ? email : userFound.email),
             bio: (bio ? bio : userFound.bio)
           }).then(function() {
-            console.log(username, ' ',email)
             done(userFound);
           }).catch(function(err) {
             res.status(500).json({ 'error': 'cannot update user' });

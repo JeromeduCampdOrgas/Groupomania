@@ -21,7 +21,7 @@
 
 <script>
 import store from '../store/index'
-import axios from 'axios'
+import configAxios from '../axios/configAxios'
 export default {
 
     name: 'user-modif',
@@ -38,31 +38,17 @@ export default {
     },
     methods:{
         userValid(){
-        const token = localStorage.getItem('token')
-      
         this.user.username = this.$store.state.userLoggedIn.username
         this.user.email = this.$store.state.userLoggedIn.email
-
-            axios
-                .put("http://localhost:3000/api/users/me",{
-                    username:this.user.username,
-                    email:this.user.email
-                }, {
-                    headers: {
-                    Authorization: "Bearer " + window.localStorage.getItem("token")
-                    }    
-                })
+            configAxios.put(`users/me`,{
+                username:this.user.username,
+                email:this.user.email})
                 .then(() => {
                     alert('Profil modifié')
-                                        axios
-                    .get("http://localhost:3000/api/users/me/",{
-                    headers: {
-                        Authorization: "Bearer " + token
-                    } 
-                    })
+                    configAxios.get(`users/me`)
                         .then(result => {
                             store.dispatch('getUserInfos',result.data )
-                            location.replace('/AllPosts') 
+                            location.replace('/AllPosts')    
                         })
                         .catch(() => console.log('Touche pas ça p\'tit con'))  
                 })               

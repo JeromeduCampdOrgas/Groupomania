@@ -21,9 +21,8 @@
 
 <script>
 import store from '../store/index'
-import axios from 'axios'
 import userModif from '@/components/userModif.vue'
-
+import configAxios from '../axios/configAxios'
 
 export default {
     name: 'Modale',
@@ -45,14 +44,9 @@ export default {
             this.affiche = !this.affiche
         },  
         deleteAccount(){
-            const token = localStorage.getItem('token')
-            const email = store.state.userLoggedIn.email
-            console.log(email)
-        axios
-        .post('http://localhost:3000/api/users/me/delete',{
-            email:email
-        }, {
-        headers: {"Authorization": "Bearer " + token}})
+        const email = store.state.userLoggedIn.email
+        configAxios.post(`users/me/delete`,{email : email})
+
         .then(() => {
            localStorage.clear()
            location.replace("/")}
