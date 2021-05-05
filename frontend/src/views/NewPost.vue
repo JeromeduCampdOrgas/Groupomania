@@ -7,7 +7,7 @@
         <form action="">
             <div class = "form-div">
                 <label for="title">Titre </label> 
-                <input class = 'input' type="text" name = "title" v-model="dataPost.title">
+                <input class = 'input' type="text" name = "title" id = "title" v-model="dataPost.title">
             </div>
             <div class = "form-div">
                 <label for="content">Contenu</label> 
@@ -15,13 +15,17 @@
             </div>
             <div class = "form-div">
                 <label for="picture">Image </label> 
-                <input class = 'input' type="file" name = "picture" @change="onFileChange">
+                <input class = 'input' type="file" name = "picture" id = "picture" @change="onFileChange">
             </div>
             <p class="alerte" v-show="unvalablePost">Le message doit contenir au moins un titre et un contenu</p>
             <div class = "form-div">
-                
-                <input type = "text" id = "validationButton" class = "button"  v-on:click="newPost" value="Valider">
-                <input type="text" v-if="isVisible" id = "annullationButton" class = "button"  v-on:click="allPosts" value="Annuler">
+                <!--<button id = "validationButton" class = "submit-button" v-on:click.prevent="connexion" v-on:keyup.enter="connexion" > 
+                    Valider
+                </button> -->
+                <button id = "validationButton" class = "button"  v-on:click="newPost">Valider</button>
+                <!--<input type = "text" id = "validationButton" class = "button"  v-on:click="newPost" value="Valider">
+                <input type="text" v-if="isVisible" id = "annullationButton" class = "button"  v-on:click="allPosts" value="Annuler">-->
+                <button v-if="isVisible" id = "annullationButton" class = "button"  v-on:click="allPosts">Annuler</button>
             </div>
         </form>
   </div>

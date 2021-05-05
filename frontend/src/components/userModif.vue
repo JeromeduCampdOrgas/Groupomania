@@ -5,14 +5,14 @@
         <form action="">
             <div class = "form-div">
                 <label for="username">username: </label>
-                <input type="text" name = "username" v-model="this.$store.state.userLoggedIn.username">
+                <input type="text" id = "username" name = "username" v-model="this.$store.state.userLoggedIn.username">
             </div>
             <div class = "form-div">
                 <label for="email">email: </label> 
-                <input type="text" name = "email" v-model="this.$store.state.userLoggedIn.email">
+                <input type="text" id = "email" name = "email" v-model="this.$store.state.userLoggedIn.email">
             </div> 
             <div>
-                <input id = "validationButton" class = "button" type="button" value = "Valider" @click="userValid">
+                <button id = "validationButton" class = "button" type="button" @click="userValid">Valider</button>
             </div>
         </form>
     </div>

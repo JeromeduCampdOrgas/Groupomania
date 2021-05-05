@@ -7,12 +7,8 @@
           <p id="username">Moi: {{ userLoggedIn.username }}</p>
           <!--<span class="updtate" ><input type="text"></span>-->
           <p id="email">E-mail: {{ userLoggedIn.email }}</p>
-
-        <!--<button @click="role" class = 'btn'>Modifier mes informations</button>
-          <button @click="deleteAccount" class = 'btn'>Supprimer mon compte</button>-->
-
-          <input type="text" @click="role" class = 'button' value="Modifier mes informations">
-          <input type="text" @click="deleteAccount" class = 'button' value="Supprimer mon compte">
+            <button @click="role" class = 'button'>Modifier mes informations</button>  
+            <button @click="deleteAccount" class = 'button'>Supprimer mon compte</button>
             <userModif v-bind:revele="affiche" v-if="affiche"></userModif>
       </div>
 

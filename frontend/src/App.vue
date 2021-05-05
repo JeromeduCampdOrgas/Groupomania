@@ -93,7 +93,7 @@ div{
   color: #2c3e50;
 }
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #04522f;
 }
 
 @media screen and (max-width:800px){

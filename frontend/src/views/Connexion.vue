@@ -7,11 +7,11 @@
         <form action="">
             <div class = "form-div">
                 <label for="email">email: </label> 
-                <input type="text" name = "email" v-model="dataConnexion.email">
+                <input type="text" name = "email" id = "email" v-model="dataConnexion.email">
             </div> 
             <div class = "form-div">
                 <label for="password">password: </label> 
-                <input type="password" name = "password" v-model="dataConnexion.password">
+                <input type="password" name = "password" id = "password" v-model="dataConnexion.password">
             </div>
             <p class="alerte" v-show="isVisible">L'adresse mail est obligatoire et doit être une adresse valide. <br>
             Le mot de passe est obligatoire et doit comporter entre 4 et 10 caractères.

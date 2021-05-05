@@ -8,23 +8,28 @@
         <form action="">
             <div class = "form-div">
                 <label for="email">email: </label> 
-                <input class="info" type="text" name = "email" v-model="dataInscription.email">
+                <input class="info" type="text" name = "email" id = "email" v-model="dataInscription.email">
             </div>  
             <div class = "form-div">
                 <label for="username">username: </label>
-                <input class="info" type="text" name = "username" v-model="dataInscription.username">
+                <input class="info" type="text" name = "username" id = "username" v-model="dataInscription.username">
             </div>
             <div class = "form-div">
                 <label for="password">password: </label>
-                <input class="info" type="password" name = "password" v-model="dataInscription.password">
+                <input class="info" type="password" name = "password" id = "password" v-model="dataInscription.password">
             </div>
             <p class="alerte" v-show="isVisible">L'adresse mail est obligatoire et doit être une adresse valide. <br>
             Le username est obligatoire et doit comporter à minima 2 caractères. <br>
             Le mot de passe est obligatoire et doit comporter entre 4 et 10 caractères et au moins 1 chiffre.
             </p>
             <div class = "form-div">
-                <input type="text" id = "validationButton" class = "button"  v-on:click="inscription" value="Valider">
-                <input type="text" id = "annullationButton" class = "button"  v-on:click="cxAccess" value="Annuler">
+                <!-- <button id = "validationButton" class = "submit-button" v-on:click.prevent="connexion" v-on:keyup.enter="connexion" > 
+                    Valider
+                </button>-->
+                <button id = "validationButton" class = "button"  v-on:click="inscription">Valider</button>
+                <!--<input type="text" id = "validationButton" class = "button"  v-on:click="inscription" value="Valider">-->
+                <!--<input type="text" id = "annullationButton" class = "button"  v-on:click="cxAccess" value="Annuler">-->
+                <button id = "annullationButton" class = "button"  v-on:click="cxAccess">Annuler</button>
             </div>
         </form>
         
