@@ -19,13 +19,10 @@
             </div>
             <p class="alerte" v-show="unvalablePost">Le message doit contenir au moins un titre et un contenu</p>
             <div class = "form-div">
-                <!--<button id = "validationButton" class = "submit-button" v-on:click.prevent="connexion" v-on:keyup.enter="connexion" > 
-                    Valider
-                </button> -->
-                <button id = "validationButton" class = "button"  v-on:click="newPost">Valider</button>
+                 <span id = "validationButton" class = "button"  v-on:click="newPost">Valider</span>
                 <!--<input type = "text" id = "validationButton" class = "button"  v-on:click="newPost" value="Valider">
                 <input type="text" v-if="isVisible" id = "annullationButton" class = "button"  v-on:click="allPosts" value="Annuler">-->
-                <button v-if="isVisible" id = "annullationButton" class = "button"  v-on:click="allPosts">Annuler</button>
+                <span v-if="isVisible" id = "annullationButton" class = "button"  v-on:click="allPosts">Annuler</span>
             </div>
         </form>
   </div>
