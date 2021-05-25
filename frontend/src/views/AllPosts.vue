@@ -10,7 +10,7 @@
             </div>
             <div id = "likes">
                 <i class="fas fa-heart" ><span class = "likesCount">{{ post.likes }}</span></i>  
-                <span id = "like" @click="like(post.id)" v-if="!post.liked">j'aime </span> 
+                <span id = "like" @click="like(post.id)" v-if="!post.liked">j'aime! </span> 
                 <span id = "unlike" @click="unlike(post.id)" v-else>j'aime plus</span> 
                 <!--<span id = "comments" @click.prevent="getPostId(post.id)">Commentaires</span>-->
             </div>
